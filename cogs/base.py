@@ -1,15 +1,12 @@
 import discord
-from discord.ext import commands
+import ezcord
 from discord.commands import slash_command
 
 
-class Base(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-
-    @slash_command(description="hey")
-    async def hey(self, ctx):
-        await ctx.respond(f"Hey {ctx.author.mention}")
+class Base(ezcord.Cog, emoji="🍪"):
+    @slash_command(description="Hey")
+    async def hey(self, ctx: discord.ApplicationContext):
+        await ctx.respond(f"Hey {ctx.user.mention}")
 
 
 def setup(bot):
