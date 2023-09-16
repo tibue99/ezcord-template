@@ -1,2 +1,1 @@
-import utils.database as dab
-from config import *
+from . import database as dab
