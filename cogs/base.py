@@ -4,7 +4,6 @@ from discord.commands import slash_command
 
 from utils import dab
 
-
 db = dab.UserDB()
 
 

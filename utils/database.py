@@ -17,7 +17,8 @@ class UserDB(ezcord.DBHandler):
         transaction = self.start()
         await transaction.exec("INSERT OR IGNORE INTO users (user_id) VALUES (?)", (user_id,))
         await transaction.exec(
-            "UPDATE users SET coins = coins + ? WHERE user_id = ?", (amount, user_id),
+            "UPDATE users SET coins = coins + ? WHERE user_id = ?",
+            (amount, user_id),
         )
         await transaction.close()
 
