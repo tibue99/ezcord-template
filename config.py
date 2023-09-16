@@ -1,1 +1,0 @@
-DB = "stats.db"

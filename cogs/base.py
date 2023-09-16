@@ -1,15 +1,20 @@
 import discord
-from discord.ext import commands
+import ezcord
 from discord.commands import slash_command
 
+from utils import dab
 
-class Base(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
 
-    @slash_command(description="hey")
-    async def hey(self, ctx):
-        await ctx.respond(f"Hey {ctx.author.mention}")
+db = dab.UserDB()
+
+
+class Base(ezcord.Cog, emoji="🍪"):
+    @slash_command(description="Earn coins!")
+    async def coins(self, ctx: discord.ApplicationContext):
+        await db.add_coins(ctx.user.id, 100)
+        new_bal = await db.get_coins(ctx.user.id)
+
+        await ctx.respond(f"You earned **100** coins! You now have **{new_bal}** coins 🪙")
 
 
 def setup(bot):
