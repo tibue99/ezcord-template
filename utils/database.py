@@ -26,3 +26,7 @@ class UserDB(ezcord.DBHandler):
 
     async def get_coins(self, user_id):
         return await self.one("SELECT coins FROM users WHERE user_id = ?", (user_id,))
+
+    async def get_all_coins(self):
+        result = await self.one("SELECT SUM(coins) FROM users")
+        return result or 0
